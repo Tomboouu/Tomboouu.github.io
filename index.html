@@ -2,18 +2,33 @@
 <html>
 
 <head>
-  <title>Loading Animation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-  <link href="WebLoadingAnimation.css" rel="stylesheet">
+  <title>Background Image Switch</title>
+  <style>
+    body {
+      background-size: 100vw 100vh;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="testCont">
-    <h1 id="test">Thomas K</h1>
-    <div id="loadingBarCont">
-      <div id="loadingBar"></div>
-    </div>
-  </div>
+  <script>
+    var imageList = [
+      "url('images/japanese_disney_wood_boy.png')",
+      "url('images/tyler_lookin_sexi_af.png')",
+      "url('images/Schmeggers.png')",
+      "url('images/poggchamp.png')"
+    ]
+    var counter = 0;
+    function bckgrdSwitch() {
+      document.body.style.backgroundImage = imageList[counter];
+      counter += 1;
+      if (counter == imageList.length) {
+        counter = 0;
+      }
+    }
+
+  </script>
+  <button onclick="bckgrdSwitch()">Switch Website Background</button>
 </body>
 
 </html>
