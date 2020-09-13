@@ -17,6 +17,8 @@
     }
 
     @keyframes bckgrdanimation {
+
+      /*This animation is filler.*/
       12.5% {
         background-color: rgb(255, 255, 255)
       }
@@ -74,8 +76,10 @@
       document.body.style.backgroundImage = imageList[0];
       counter = 1;
       body.id = "";
-      
+
     }
+    // WIP
+    //This should switch the background images in a slideshow-like style, automatically.
     function strtAnimation() {
       bckgrdReset();
       body.id = "bckgrdAnimation";
@@ -92,11 +96,13 @@
       }
     }
   </script>
-  <button class="removebuttons" id="imgswitchbtn" onclick="bckgrdSwitch()">Switch Website Background</button>
+  <button class="removebuttons" id="imgswitchbtn" onclick="bckgrdSwitch()">Switch Website Background Manually</button>
+  <button class="removebuttons" id="animationbtn" onclick="strtAnimation()">Switch Website Background
+    Automatically</button>
+  <br>
   <button class="removebuttons" id="resetButton" onclick="bckgrdReset()">Reset Website Background</button>
+  <br>
   <button class="removebuttons" id="deleteButton" onclick="deleteAllButtons()">Delete all buttons.</button>
-  <button class="removebuttons" id="animationbtn" onclick="strtAnimation()">
-    Reset the website background and activate background animation.</button>
 </body>
 
 </html>
