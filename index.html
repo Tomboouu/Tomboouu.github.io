@@ -7,28 +7,96 @@
     body {
       background-size: 100vw 100vh;
     }
+
+    #bckgrdAnimation {
+      background-color: rgb(255, 255, 255);
+      animation-name: bckgrdanimation;
+      animation-duration: 10s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes bckgrdanimation {
+      12.5% {
+        background-color: rgb(255, 255, 255)
+      }
+
+      25% {
+        background-color: rgb(255, 255, 0)
+      }
+
+      37.5% {
+        background-color: rgb(255, 0, 255)
+      }
+
+      50% {
+        background-color: rgb(0, 255, 255)
+      }
+
+      62.5% {
+        background-color: rgb(255, 0, 0)
+      }
+
+      75% {
+        background-color: rgb(0, 0, 255)
+      }
+
+      87.5% {
+        background-color: rgb(0, 255, 0)
+      }
+
+      100% {
+        background-color: rgb(0, 0, 0)
+      }
+    }
   </style>
 </head>
 
 <body>
   <script>
     var imageList = [
+      "url('')",
       "url('images/japanese_disney_wood_boy.png')",
       "url('images/tyler_lookin_sexi_af.png')",
       "url('images/Schmeggers.png')",
       "url('images/poggchamp.png')"
     ]
-    var counter = 0;
+    var body = document.body;
+    var counter = 1;
     function bckgrdSwitch() {
       document.body.style.backgroundImage = imageList[counter];
       counter += 1;
       if (counter == imageList.length) {
-        counter = 0;
+        counter = 1;
       }
     }
-
+    function bckgrdReset() {
+      document.body.style.backgroundImage = imageList[0];
+      counter = 1;
+      body.id = "";
+      
+    }
+    function strtAnimation() {
+      bckgrdReset();
+      body.id = "bckgrdAnimation";
+    }
+    function deleteAllButtons() {
+      var buttonList = [
+        "imgswitchbtn",
+        "resetButton",
+        "deleteButton",
+        "animationbtn"
+      ];
+      for (var i = 0; i < buttonList.length; i++) {
+        document.getElementById(buttonList[i]).remove();
+      }
+    }
   </script>
-  <button onclick="bckgrdSwitch()">Switch Website Background</button>
+  <button class="removebuttons" id="imgswitchbtn" onclick="bckgrdSwitch()">Switch Website Background</button>
+  <button class="removebuttons" id="resetButton" onclick="bckgrdReset()">Reset Website Background</button>
+  <button class="removebuttons" id="deleteButton" onclick="deleteAllButtons()">Delete all buttons.</button>
+  <button class="removebuttons" id="animationbtn" onclick="strtAnimation()">
+    Reset the website background and activate background animation.</button>
 </body>
 
 </html>
