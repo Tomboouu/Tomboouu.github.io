@@ -7,7 +7,10 @@
     body {
       background-size: 100vw 100vh;
     }
-
+    #clock {
+      position: relative;
+      margin: 0px;
+    }
     #bckgrdAnimation {
       background-color: rgb(255, 255, 255);
       animation-name: bckgrdanimation;
@@ -15,46 +18,21 @@
       animation-timing-function: ease;
       animation-iteration-count: infinite;
     }
-
     @keyframes bckgrdanimation {
-
       /*This animation is filler.*/
-      12.5% {
-        background-color: rgb(255, 255, 255)
-      }
-
-      25% {
-        background-color: rgb(255, 255, 0)
-      }
-
-      37.5% {
-        background-color: rgb(255, 0, 255)
-      }
-
-      50% {
-        background-color: rgb(0, 255, 255)
-      }
-
-      62.5% {
-        background-color: rgb(255, 0, 0)
-      }
-
-      75% {
-        background-color: rgb(0, 0, 255)
-      }
-
-      87.5% {
-        background-color: rgb(0, 255, 0)
-      }
-
-      100% {
-        background-color: rgb(0, 0, 0)
-      }
+      12.5% {background-color: rgb(255, 255, 255)}
+      25% {background-color: rgb(255, 255, 0)}
+      37.5% {background-color: rgb(255, 0, 255)}
+      50% {background-color: rgb(0, 255, 255)}
+      62.5% {background-color: rgb(255, 0, 0)}
+      75% {background-color: rgb(0, 0, 255)}
+      87.5% {background-color: rgb(0, 255, 0)}
+      100% {background-color: rgb(0, 0, 0)}
     }
   </style>
 </head>
 
-<body>
+<body onload="startClock()">
   <script>
     var imageList = [
       "url('')",
@@ -99,6 +77,20 @@
       }
       i = 0;
     }
+    function startClock() {
+      var today = new Date();
+      var hours = today.getHours();
+      var minutes = today.getMinutes();
+      var seconds = today.getSeconds();
+      minutes = checkTime(minutes);
+      seconds = checkTime(seconds);
+      document.getElementById('clock').innerHTML = hours + ":" + minutes + ":" + seconds;
+      var t = setTimeout(startClock, 500); //calls startClock() every 500 milliseconds
+    }
+    function checkTime(i) {
+      if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+      return i;
+    }
     function deleteAllButtons() {
       var allButtons = document.getElementsByTagName("button");
       while (allButtons[0]) {
@@ -106,15 +98,20 @@
       }
     }
   </script>
-  <button onclick="bckgrdSwitch()">Switch Website Background Manually</button>
-  <button onclick="strtAnimation()">Switch Website Background
-    Automatically</button>
-  <button onclick="bckgrdReset()">Reset Website Background</button>
+  <div><h2 id="clock"></h2></div>
   <br>
-  <button onclick="openNewTab()">Open up a new tab to a special place.</button>
-  <button onclick="openTenNewTabs()">Open up 10 new tabs to a special place. <strong>Enable popups for this button to work.</strong></button>
-  <br>
-  <button onclick="deleteAllButtons()">Delete all buttons.</button>
+  <div id="button-bar">
+    <button onclick="bckgrdSwitch()">Switch Website Background Manually</button>
+    <button onclick="strtAnimation()">Switch Website Background
+      Automatically</button>
+    <button onclick="bckgrdReset()">Reset Website Background</button>
+    <br>
+    <button onclick="openNewTab()">Open up a new tab to a special place.</button>
+    <button onclick="openTenNewTabs()">Open up 10 new tabs to a special place. <strong>Enable popups for this button to
+        work.</strong></button>
+    <br>
+    <button onclick="deleteAllButtons()">Delete all buttons.</button>
+  </div>
 </body>
 
 </html>
